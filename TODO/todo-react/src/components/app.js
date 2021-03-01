@@ -30,7 +30,8 @@ class App extends Component {
                 id: Math.random(),
                 value:this.state.userInput
             }
-
+            // https://oprearocks.medium.com/what-do-the-three-dots-mean-in-javascript-bc5749439c9a
+            // spread operator
             const list = [...this.state.list];
             list.push(userInput);
 
