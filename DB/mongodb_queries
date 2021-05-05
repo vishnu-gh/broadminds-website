@@ -1,0 +1,85 @@
+db.posts.insert({
+	title:'Post One',
+	body:'Body of post one',
+	Categoy:'News',
+	likes:30,
+	tags:['news','events'],
+	user:{
+		name:'John Marlott',
+		status:'Author'
+	},
+	date:Date()
+})
+
+db.posts.insertMany([
+	{
+		title:"Post two",
+		body:"Body of Post two",
+		category: 'News',
+		date: Date()
+	},
+		{
+		title:"Post three",
+		body:"Body of Post three",
+		category: 'News',
+		date: Date()
+	},
+		{
+		title:"Post four",
+		body:"Body of Post four",
+		category: 'News',
+		date: Date()
+	},
+		{
+		title:"Post five",
+		body:"Body of Post five",
+		category: 'News',
+		date: Date()
+	},
+])
+
+db.posts.update({
+	title:'Post two'
+},
+	{
+		body: 'Body of post two'
+	}
+)
+
+db.posts.update({title:'Post three'},{
+	$set: {
+		body:'body of post three updated',
+		category:'Technology'
+	}
+})
+
+db.posts.update({title:'Post One'},{ $inc: {likes: 5}})
+db.posts.update({'title':'Post One'}, {$rename: {likes:'views'}})
+
+db.posts.remove({title:'post two'})
+db.posts.remove({title:null})
+
+db.posts.update({title:'Post One'},{
+	$set: {
+		comments: [
+			{
+				user:'Henry Marshaw',
+				body:'Comment One',
+				date: Date()
+			},
+			{
+				user:'James Willow',
+				body:'Comment Two',
+				date: Date()
+			}
+		]
+	}
+})
+
+db.posts.find({
+	comments:{
+		$elemMatch:{
+			user:'James Willow'
+		}
+	}
+})
